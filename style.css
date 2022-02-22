@@ -99,7 +99,7 @@ button {
     padding-bottom: 30px;
 }
 
-.active:focus {
-    color: #FF9500;
-    background-color: white;
+.active {
+    color: #FF9500 !important;
+    background-color: white !important;
 }

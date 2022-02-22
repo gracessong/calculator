@@ -30,6 +30,7 @@ const buttonsNum = Array.from(document.querySelectorAll('button.input'));
 buttonsNum.forEach(button => button.addEventListener('click', inputNumber));
 
 function inputNumber() {
+    buttonInactive();
     clearResult();
     const numInput = this.textContent;
     const addNum = document.createElement('p');
@@ -42,6 +43,7 @@ function inputNumber() {
 //listen for 'click', clear the display, initialize running result to zero and empty out the twoNumbers array//
 const buttonClear = document.querySelector('button.clear');
 buttonClear.addEventListener('click', () => {
+    buttonInactive()
     while (display.hasChildNodes()) display.removeChild(display.firstChild);
     runningResult = 0;
     twoNumbers.splice(0, twoNumbers.length);
@@ -51,7 +53,10 @@ buttonClear.addEventListener('click', () => {
 //+/- BUTTON//
 //listen for 'click', toggle a negative sign in front of the input number//
 const buttonPlusMinus = document.querySelector('.plus-minus');
-buttonPlusMinus.addEventListener('click', toggleNeg);
+buttonPlusMinus.addEventListener('click', () => {
+    toggleNeg()
+    buttonInactive()
+});
 
 function toggleNeg() {
     const negSign = document.createElement('p');
@@ -68,6 +73,7 @@ function toggleNeg() {
 //listen for 'click', remove the last digit from display//
 const buttonDelete = document.querySelector('.delete');
 buttonDelete.addEventListener('click', () => {
+    buttonInactive();
     display.removeChild(display.lastChild);
 })
 
@@ -150,6 +156,7 @@ function whenOperatorClicked(operator) {
 }
 
 buttonPlus.addEventListener('click', function(e) {
+    e.stopPropagation();
     whenOperatorClicked(add)
     buttonInactive();
     e.target.classList.add('active')
