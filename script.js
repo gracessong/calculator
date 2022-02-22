@@ -133,14 +133,11 @@ function operatorClicked(currentOperator) {
     }
 }
 
-function buttonActive() {
-    const operatorButtons = document.querySelectorAll('.right button');
-    operatorButtons.forEach(button => button.classList.add('active'));
-}
-
 function buttonInactive() {
-    const activeButton = document.querySelector('.active');
-    if (activeButton) activeButton.classList.remove('active');
+    const activeButton = document.querySelectorAll('.active');
+    if (activeButton.length > 0) {
+        activeButton.forEach(button => button.classList.remove('active'));
+    } 
 }
 
 //PLUS button//
@@ -151,17 +148,17 @@ function whenOperatorClicked(operator) {
     clearDisplay();
     displayResult();
     buttonInactive();
-    buttonActive();
+    this.classList.add('active')
 }
 
 buttonPlus.addEventListener('click', function() {
-    whenOperatorClicked(add);
-});
+    whenOperatorClicked(add)
+})
 
 //MINUS button//
 const buttonMinus = document.querySelector('#subtract');
 buttonMinus.addEventListener('click', function() {
-    whenOperatorClicked(subtract);
+    whenOperatorClicked(subtract)
 })
 
 //MULTIPLY button//
@@ -178,7 +175,9 @@ buttonDivide.addEventListener('click', function() {
 
 //EQUALS button//
 const buttonEquals = document.querySelector('#equals');
-buttonEquals.addEventListener('click', function() {
+buttonEquals.addEventListener('click', function(e) {
+    buttonInactive();
+    e.target.classList.add('active')
     twoNumbers.push(getNumber());
     runningResult = calculate(previousOperator, twoNumbers[0], twoNumbers[1]);
     clearDisplay();
@@ -190,7 +189,8 @@ buttonEquals.addEventListener('click', function() {
 
 function toggleClassResult() {
     const result = document.querySelector('.result');
-    result.classList.toggle('number');
+    result.classList.remove('result')
+    result.classList.add('number');
 }
 
 //footer - insert current year//
