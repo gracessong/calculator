@@ -147,30 +147,36 @@ function whenOperatorClicked(operator) {
     operatorClicked(operator);
     clearDisplay();
     displayResult();
-    buttonInactive();
-    this.classList.add('active')
 }
 
-buttonPlus.addEventListener('click', function() {
+buttonPlus.addEventListener('click', function(e) {
     whenOperatorClicked(add)
+    buttonInactive();
+    e.target.classList.add('active')
 })
 
 //MINUS button//
 const buttonMinus = document.querySelector('#subtract');
-buttonMinus.addEventListener('click', function() {
+buttonMinus.addEventListener('click', function(e) {
     whenOperatorClicked(subtract)
+    buttonInactive();
+    e.target.classList.add('active')
 })
 
 //MULTIPLY button//
 const buttonMultiply = document.querySelector('#multiply');
-buttonMultiply.addEventListener('click', function() {
+buttonMultiply.addEventListener('click', function(e) {
     whenOperatorClicked(multiply)
+    buttonInactive();
+    e.target.classList.add('active')
 })
 
 //DIVIDE button//
 const buttonDivide = document.querySelector('#divide');
-buttonDivide.addEventListener('click', function() {
+buttonDivide.addEventListener('click', function(e) {
     whenOperatorClicked(divide)
+    buttonInactive();
+    e.target.classList.add('active')
 })
 
 //EQUALS button//
